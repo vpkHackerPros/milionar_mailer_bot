@@ -1,0 +1,31 @@
+import React from 'react';
+import styled from 'styled-components'
+
+function SendMailButton (props) {
+  const sendEmail = () => {
+    var nodeoutlook = require('nodejs-nodemailer-outlook')
+    nodeoutlook.sendEmail({
+      auth: {
+          user: props.myEmail,
+          pass: props.myPassword
+      },
+      from: props.myEmail,
+      to: 'kl.lampret@gmail.com',
+      subject: 'Hey you, awesome!',
+      html: '<b>This is bold text</b>',
+      text: 'This is text version!',
+      replyTo: 'receiverXXX@gmail.com',
+      attachments: [],
+      onError: (e) => console.log(e),
+      onSuccess: (i) => console.log(i)
+    });
+  }
+
+  return (
+    <button onClick={sendEmail} >send mail</button>
+  )
+
+
+}
+
+export default SendMailButton
